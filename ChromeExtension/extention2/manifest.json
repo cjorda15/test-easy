@@ -14,9 +14,12 @@
     {
       "matches": ["<all_urls>"],
       "css": ["mystyle.css"],
-      "js": ["jquery.js", "myscript.js"]
+      "js": ["jquery.js", "myscript.js","background.js"]
     }
   ],
+  "background": {
+    "scripts": ["background.js"]
+  },
   "permissions": [
     "tabs",
     "<all_urls>",
