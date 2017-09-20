@@ -1,8 +1,16 @@
 function hey()
 {
-	return "hey";
+	console.log("hey");
 }
+
+console.log("runnin background.js")
 // console.log(chrome.tabs);
+
+chrome.runtime.onMessage.addListener(
+  function(request, sender, sendResponse) {
+  	hey();
+  });
+
 
 // function hey()
 // {

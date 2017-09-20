@@ -9,13 +9,10 @@ function myfunc(){
 	e = document.getElementById("header");
 	console.log("2:",e);
 	document.addEventListener('click',(event)=>{
-		console.log("fuck you")
-		store.push(document)
-		console.log(store,"QQQQ")
-		console.log(event.target,"event")
-		
-
-
+		testFunction();
+		//store.push(document)
+		//console.log(store,"QQQQ")
+		//console.log(event.target,"event")
 	})
 	// $("#header").onClick =fun;
 	// console.log($("#header-bottom-left").onClick);
@@ -25,11 +22,12 @@ function myfunc(){
     // $("body").append('<div style="width:200px; height:200px; border: 1px solid red;"></div>');
 }
 
-function fun()
-{
-	alert("hry");
+function testFunction(){
+	chrome.extension.sendMessage("things");
 }
 
+
+//$(document).ready(myfunc);
 $(document).ready(myfunc);
 
 
