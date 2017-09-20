@@ -1,15 +1,21 @@
 
 
 function myfunc(){
+	const store = []
 	console.log(document);
 	var e = document.getElementById("header");
 	console.log("1:",e);
 	e.style.backgroundColor = "red";
 	e = document.getElementById("header");
 	console.log("2:",e);
-	document.addEventListener('click',()=>{
+	document.addEventListener('click',(event)=>{
 		console.log("fuck you")
-		console.log(document,"QQQQ")
+		store.push(document)
+		console.log(store,"QQQQ")
+		console.log(event.target,"event")
+		
+
+
 	})
 	// $("#header").onClick =fun;
 	// console.log($("#header-bottom-left").onClick);
