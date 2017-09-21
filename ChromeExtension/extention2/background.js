@@ -8,7 +8,9 @@ console.log("runnin background.js")
 
 chrome.runtime.onMessage.addListener(
   function(request, sender, sendResponse) {
-  	hey();
+  	console.log(request)
+  	//var obj = JSON.parse(request.data);
+  	//console.log("start:",obj,":end");
   });
 
 
