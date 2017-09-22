@@ -5,6 +5,11 @@ function startListener(){
 		sendMessageToBackground(o);
 	})
 
+	chrome.extension.onMessage.addListener(function(msg, sender, sendResponse) {
+   			if (msg.action == 'SendIt') {
+      		alert("Message recieved!");
+   	}
+});
 }
 
 function sendMessageToBackground(object){
@@ -17,7 +22,7 @@ function getReleventInfo(event)
 
 	var objInfo = {type:"element",
 	path:processPath(event.path),
-	elementInfo:event.target.innerHTML}
+	elementInfo:event.target.outerHTML}
 	return objInfo;
 }
 
