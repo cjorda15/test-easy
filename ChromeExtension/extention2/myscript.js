@@ -1,6 +1,7 @@
 
 function startListener(){
 	document.addEventListener('click',(event)=>{
+		console.log("clicked something");
 		var o = getReleventInfo(event);
 		sendMessageToBackground(o);
 	})
@@ -8,6 +9,10 @@ function startListener(){
 	chrome.runtime.onMessage.addListener(
 	  function(request, sender, sendResponse) {
 	    console.log(request);
+	    if(request.command === "command")
+	    {
+	       doFunction();
+	    }
 	  });
 
 	// chrome.extension.onMessage.addListener(function(msg, sender, sendResponse) {
@@ -17,13 +22,20 @@ function startListener(){
 };
 
 
+function doFunction(element, command, parapeter)
+{
+	console.log("doFunciton");
+	document.getElementById("header-bottom-left").click();
+}
+
+
 function sendMessageToBackground(object){
 	chrome.extension.sendMessage(object);
 }
 
 function getReleventInfo(event)
 {
-	console.log(event.target.innerHTML);
+	//console.log(event.target.innerHTML);
 
 	var objInfo = {type:"element",
 	path:processPath(event.path),
@@ -57,15 +69,15 @@ function processPath(path)
 	return partPath;
 }
 
-function logOutPath(path)
-{
-	outputList =[];
-	path.forEach(function(val)
-	{
-		outputList.push(elemType(val));
-	});
-	console.log(outputList);
-}
+// function logOutPath(path)
+// {
+// 	outputList =[];
+// 	path.forEach(function(val)
+// 	{
+// 		outputList.push(elemType(val));
+// 	});
+// 	console.log(outputList);
+// }
 
 
 function elemType(elementObj)

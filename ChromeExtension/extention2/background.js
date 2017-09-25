@@ -1,5 +1,4 @@
-
-console.log("runnin background.js")
+console.log("Background application is running...")
 
 chrome.runtime.onMessage.addListener(
   function(request, sender, sendResponse) {
@@ -18,8 +17,7 @@ setTimeout(function(){
 
         console.log(windowList);
         chrome.tabs.getAllInWindow(windowList[0].id,function(tabs){console.log("tabs",tabs)
-        	chrome.tabs.sendMessage(tabs[1].id,{message:"sentit"});
-        	console.log("maybe sent a message");
+        	chrome.tabs.sendMessage(tabs[1].id,{command:"command", message:"sentit"});
     	});
     });
 
@@ -28,4 +26,4 @@ setTimeout(function(){
 	console.log("windows ",chrome.windows);
 
     //chrome.tabs.sendMessage(tab.id,{action:"SendIt"});
-},5000 );
+},10000 );

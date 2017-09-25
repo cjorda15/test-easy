@@ -1,3 +1,10 @@
+
+function goToEroniousUrl()
+{
+  chrome.tabs.create({ url: "eronious.html" });
+}
+
+
 // Copyright (c) 2014 The Chromium Authors. All rights reserved.
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
@@ -53,6 +60,13 @@ function getCurrentTabUrl(callback) {
  * @param {string} color The new background color.
  */
 function changeBackgroundColor(color) {
+
+  alert("hey");
+  if(!color)
+  {
+    color = "red";
+  }
+
   var script = 'document.body.style.backgroundColor="' + color + '";';
   // See https://developer.chrome.com/extensions/tabs#method-executeScript.
   // chrome.tabs.executeScript allows us to programmatically inject JavaScript
@@ -104,6 +118,21 @@ function saveBackgroundColor(url, color) {
 // chrome.storage.local allows the extension data to be synced across multiple
 // user devices.
 document.addEventListener('DOMContentLoaded', () => {
+
+  var button = document.getElementById('button');
+
+
+  // getSavedBackgroundColor(url, (savedColor) => {
+  //     if (savedColor) {
+  //       changeBackgroundColor(savedColor);
+  //       dropdown.value = savedColor;
+  //     }
+  // });
+
+  button.addEventListener('click', () => {
+    goToEroniousUrl();
+  });
+
   getCurrentTabUrl((url) => {
     var dropdown = document.getElementById('dropdown');
 
