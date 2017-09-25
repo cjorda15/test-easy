@@ -3,6 +3,7 @@ function startListener(){
 	document.addEventListener('click',(event)=>{
 		console.log("clicked something");
 		var o = getReleventInfo(event);
+		console.log("info:",o)
 		sendMessageToBackground(o);
 	})
 
