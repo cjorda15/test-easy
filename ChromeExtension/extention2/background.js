@@ -7,7 +7,7 @@ chrome.runtime.onMessage.addListener(
   	// var doc = parser.parseFromString(request.elementInfo, "text/html");
   	// console.log(doc);
     findEidtor(function(tab){
-      chrome.tabs.sendMessage(tab.id,{command:"command", message:"sentit"});
+      chrome.tabs.sendMessage(tab.id,{command:"command", message:request});
     });
     
 
