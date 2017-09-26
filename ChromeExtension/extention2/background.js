@@ -6,53 +6,54 @@ chrome.runtime.onMessage.addListener(
   	var parser = new DOMParser();
   	// var doc = parser.parseFromString(request.elementInfo, "text/html");
   	// console.log(doc);
-    var tb = findEidtor();
-    console.log("the tab",tb);
+    findEidtor(function(tab){
+      chrome.tabs.sendMessage(tab.id,{command:"command", message:"sentit"});
+    });
+    
 
     //chrome.tabs.sendMessage(findEidtor().id,{command:"command", message:"sentit"});
   });
 
 
-setTimeout(function(){
-	var windowList;
-	chrome.windows.getAll({populate : true}, function (window_list) {
-        //console.log("windows",window_list);
-        windowList = window_list;
+// setTimeout(function(){
+// 	var windowList;
+// 	chrome.windows.getAll({populate : true}, function (window_list) {
+//         //console.log("windows",window_list);
+//         windowList = window_list;
 
-        console.log(windowList);
-        chrome.tabs.getAllInWindow(windowList[0].id,function(tabs){
-          console.log("tabs",tabs)
-        	chrome.tabs.sendMessage(tabs[1].id,{command:"command", message:"sentit"});
-    	});
-    });
+//         console.log(windowList);
+//         chrome.tabs.getAllInWindow(windowList[0].id,function(tabs){
+//           console.log("tabs",tabs)
+//         	chrome.tabs.sendMessage(tabs[1].id,{command:"command", message:"sentit"});
+//     	});
+//     });
 
 
 	
-	console.log("windows ",chrome.windows);
+// 	console.log("windows ",chrome.windows);
 
-    //chrome.tabs.sendMessage(tab.id,{action:"SendIt"});
-},10000 );
+//     //chrome.tabs.sendMessage(tab.id,{action:"SendIt"});
+// },10000 );
 
-function findEidtor()
+// 
+
+function findEidtor(callback)
 {
-  var windowList;
-  chrome.windows.getAll({populate : true}, function (window_list) {
-    return window_list;
-  });
-  console.log("windowList:",windowList);
-
-  for(let i = 0; i < windowList.length; i++)
-  {
-     var theTabs;
+  chrome.windows.getAll({populate : true}, function (windowList) {
+    console.log("windowList:",windowList);
+    for(let i = 0; i < windowList.length; i++)
+    {
       chrome.tabs.getAllInWindow(windowList[i].id, theTabs = function(tabs){
-         return tabs;
-      });
-      for(let j=0; j < theTabs.length; j++)
-      {
-          if(theTabs[j].title === "Eronious")
+        console.log("tabs:",tabs);
+        for(let j=0; j < tabs.length; j++)
+        {
+          if(tabs[j].title === "Eronious")
           {
-            return theTabs[j];
+            console.log("the tab",tabs[j]);
+            callback(tabs[j]);
           }
-      }
-  }
+        }
+      });
+    }
+  });
 }
