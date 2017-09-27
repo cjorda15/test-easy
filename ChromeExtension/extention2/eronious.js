@@ -6,28 +6,16 @@ function startListeners() {
   chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
     var selectedElement = document.getElementById('render-options');
 
-    const idDetails = request.path[0].id
-      ? `<div class="selected-element-details">id: ${request.path[0].id}</div>`
-      : '';
-    const classDetails = request.path[0].class
-      ? `<div class="selected-element-details">id: ${request.path[0].id}</div>`
-      : '';
-    const styleDetails = request.path[0].style
-      ? `<div class="selected-element-details">id: ${request.path[0]
-          .style}</div>`
-      : '';
-    const typeDetails = request.path[0].type
-      ? `<div class="selected-element-details">id: ${request.path[0]
-          .type}</div>`
-      : '';
+    const idDetails = request.path[0];
 
-    selectedElement.innerHTML = `<div class="selected-element-container">
-
+    // request.path[0].elementType = request.path[0].elementType.toLowerCase();
+    selectedElement.innerHTML = `
+					<div class="selected-element-container">
+					<div class="selected-element-details">text: ${request.text}</div>
 					<div class="selected-element-details">id: ${request.path[0].id}</div>
 					<div class="selected-element-details">class: ${request.path[0].class}</div>
-					<div class="selected-element-details">style: ${request.style}</div>
-					<div class="selected-element-details">type: ${request.type}</div>
-
+					<div class="selected-element-details">element type: ${request.path[0]
+            .elementType}</div>
 				</div>`;
 
     console.log('working?:', request);
