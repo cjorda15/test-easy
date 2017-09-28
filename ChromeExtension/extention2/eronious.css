@@ -1,0 +1,27 @@
+body {
+  background-color: blue;
+}
+textarea {
+  width: 50%;
+  height: 500px;
+  max-width: 600px;
+}
+
+.top-wrapper {
+  display: flex;
+  width: 100%;
+}
+
+#render-options {
+  background: #1a1a1a;
+  height: 500px;
+  max-width: 600px;
+  width: 50%;
+}
+
+.selected-element-container {
+}
+
+.selected-element-details {
+  color: red;
+}
