@@ -10,23 +10,28 @@ function startListener(){
 	chrome.runtime.onMessage.addListener(
 	  function(request, sender, sendResponse) {
 	    console.log(request);
-	    if(request.command === "command")
-	    {
-	       doFunction();
-	    }
+	    doFunction(request.command, request.objectInfo, request.parameter);
+	    
 	  });
 
 	// chrome.extension.onMessage.addListener(function(msg, sender, sendResponse) {
  //   			//if (msg.action == 'SendIt') {
  //      		alert("Message recieved!");
  //   	});
+
+
 };
 
 
-function doFunction(element, command, parapeter)
+function doFunction(command, objectInfo , parameter)
 {
-	console.log("doFunciton");
-	document.getElementById("header-bottom-left").click();
+	if(command === "click")
+	{	
+		if(objectInfo.id)//check to make sure we have the id before we use it.
+		{
+			document.getElementById(objectInfo.id).click();
+		}
+	}
 }
 
 
@@ -38,7 +43,8 @@ function getReleventInfo(event)
 {
 	//console.log(event.target.innerHTML);
 
-	var objInfo = {type:"element",
+	var objInfo = {command:"recordElement",
+		type:"element",
 	path:processPath(event.path),
 	elementInfo:event.target.outerHTML}
 	return objInfo;

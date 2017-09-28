@@ -1,8 +1,5 @@
 
-function goToEroniousUrl()
-{
-  chrome.tabs.create({ url: "eronious.html" });
-}
+
 
 
 // Copyright (c) 2014 The Chromium Authors. All rights reserved.
@@ -117,9 +114,32 @@ function saveBackgroundColor(url, color) {
 // to a document's origin. Also, using chrome.storage.sync instead of
 // chrome.storage.local allows the extension data to be synced across multiple
 // user devices.
+
+
+function goToEroniousUrl()
+{
+  chrome.tabs.create({ url: "eronious.html" });
+}
+
+function turnOnInvestigateMode(callback)
+{
+  callback()
+}
+
+function isInvestigationOn()
+{
+  return false;
+}
+
+var isInvestOn = false;
+
 document.addEventListener('DOMContentLoaded', () => {
 
   var button = document.getElementById('button');
+  var button2 = document.getElementById('button2');
+  
+  //if(isInvestigationOn()).button2.innerHTML()
+
 
 
   // getSavedBackgroundColor(url, (savedColor) => {
@@ -132,6 +152,12 @@ document.addEventListener('DOMContentLoaded', () => {
   button.addEventListener('click', () => {
     goToEroniousUrl();
   });
+
+  button2.addEventListener('click', () => {
+    turnOnInvestigateMode(function(){button2.innerHTML = "investigate mode on";})
+  });
+
+
 
   // getCurrentTabUrl((url) => {
   //   var dropdown = document.getElementById('dropdown');
